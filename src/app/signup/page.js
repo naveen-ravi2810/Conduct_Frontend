@@ -1,6 +1,7 @@
 "use client";
 import Navbar from "@/components/Navbar";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { Bounce, ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -9,6 +10,8 @@ const Register = () => {
   const [UserDetails, setUserDetails] = useState({});
 
   const [OTP_send, setOTP_send] = useState(false);
+
+  const router = useRouter();
 
   function updateRegister(event) {
     setUserDetails({
@@ -77,6 +80,7 @@ const Register = () => {
             theme: "light",
             transition: Bounce,
           });
+          router.replace("/login");
         } else {
           const data = await resp.json();
           toast.error(data.detail, {

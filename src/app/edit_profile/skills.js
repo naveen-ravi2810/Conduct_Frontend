@@ -20,7 +20,7 @@ const Skills = () => {
     });
     if (resp.ok) {
       const data = await resp.json();
-      setSkills(data);
+      setSkills(data["items"]);
       setIsLoading(false);
     }
   }
@@ -32,7 +32,7 @@ const Skills = () => {
     //     return;
     // }
     const params = new URLSearchParams();
-    params.append("page_no", Page_no);
+    params.append("page", Page_no);
     if (SkillName !== null && SkillName !== undefined && SkillName !== "") {
       params.append("skill", SkillName);
     }
@@ -44,11 +44,13 @@ const Skills = () => {
     });
     if (resp.ok) {
       const data = await resp.json();
-      setUnAddedSkills(data);
+      setUnAddedSkills(data["items"]);
     } else {
       alert("Some error");
     }
   }
+
+  console.log(Skills);
 
   function AddToSkills(skill) {
     setSkills((prevSkills) => [...prevSkills, skill]);
@@ -136,7 +138,7 @@ const Skills = () => {
       ) : (
         <div className="flex justify-center">
           <div>
-            {Skills.length > 0 ? (
+            {Skills ? (
               <div className="grid gap-4 grid-cols-6">
                 {Skills.map((skill, index) => (
                   <button
@@ -194,7 +196,7 @@ const Skills = () => {
               </button>
             </div>
             <div className="">
-              {UnAddedSkills.length > 0 ? (
+              {UnAddedSkills ? (
                 <div className="relative flex overflow-hidden flex-wrap ">
                   {UnAddedSkills.map((skill, index) => (
                     <button

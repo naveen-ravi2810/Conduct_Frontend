@@ -28,8 +28,8 @@ const Page = () => {
       const data = await resp.json();
       localStorage.setItem("token", data.access_token);
       router.replace("/peoples");
-    } else{
-      alert("Invalid Credentials")
+    } else {
+      alert("Invalid Credentials");
     }
   }
   return (

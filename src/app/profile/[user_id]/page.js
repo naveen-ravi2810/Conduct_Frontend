@@ -12,7 +12,6 @@ const Profile = () => {
 
   const router = useRouter();
   const pathname = useParams();
-  console.log(pathname.user_id);
   async function get_user_profile() {
     const resp = await fetch(`/api/profile/${pathname.user_id}`, {
       method: "GET",
@@ -170,28 +169,27 @@ const Profile = () => {
                 >
                   <h1 className="text-3xl flex gap-3">Skills</h1>
                   <div className="flex flex-wrap mt-2">
-                  {UserData.skills &&
-                    UserData.skills.map((skill, index) => (
-                      <a
-                        key={index}
-                        href={`/skills/${skill.skill}`}
-                        className="px-3 py-2 bg-green-500 text-white rounded-full text-sm mr-2 mb-2 hover:bg-green-600 transition duration-300"
-                      >
-                        {skill.skill}
-                      </a>
-                    ))}
-                </div>
+                    {UserData.skills &&
+                      UserData.skills.map((skill, index) => (
+                        <p
+                          key={index}
+                          href={`/skills/${skill.skill}`}
+                          className="px-3 py-2 bg-green-500 text-white rounded-full text-sm mr-2 mb-2 hover:bg-green-600 transition duration-300"
+                        >
+                          {skill.skill}
+                        </p>
+                      ))}
+                  </div>
                 </div>
               </div>
             )}
           </div>
           <div className="text-blue-500 text-2xl text-right pt-10">
-          {Current_User && (
-              <Link href={`/change_password`} >
+            {Current_User && (
+              <Link href={`/change_password`}>
                 <button>Change Password</button>
               </Link>
             )}
-           
           </div>
         </div>
       </div>

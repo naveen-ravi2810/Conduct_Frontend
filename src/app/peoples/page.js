@@ -183,7 +183,7 @@ const Peoples = () => {
             ))}
           </div>
           {IsLoading === false ? (
-            <Peoplecard details={UsersData} />
+            <Peoplecard details={UsersData["items"]} />
           ) : (
             <div className="px-10">
               <div className="flex justify-center pt-20 text-3xl">

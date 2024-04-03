@@ -21,7 +21,7 @@ const AllSkills = () => {
 
   async function get_skills_and_the_count() {
     const params = new URLSearchParams();
-    params.append("page_no", Page_no);
+    params.append("page", Page_no);
     if (SkillName !== null && SkillName !== undefined && SkillName !== "") {
       params.append("skill", SkillName);
     }
@@ -83,8 +83,8 @@ const AllSkills = () => {
         </button>
       </div>
       <div className="pt-20 relative flex overflow-hidden flex-wrap">
-        {Skills.length > 0 &&
-          Skills.map((skill, index) => (
+        {Skills["items"] &&
+          Skills["items"].map((skill, index) => (
             <div
               className="flex bg-yellow-500 w-fit py-1 px-2 rounded-3xl gap-3 m-1"
               key={index}
