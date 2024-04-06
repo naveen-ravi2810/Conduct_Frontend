@@ -27,7 +27,7 @@ const Page = () => {
     if (resp.ok) {
       const data = await resp.json();
       localStorage.setItem("token", data.access_token);
-      router.replace("/peoples");
+      router.replace("/people");
     } else {
       alert("Invalid Credentials");
     }

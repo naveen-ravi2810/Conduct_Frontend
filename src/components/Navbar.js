@@ -71,7 +71,10 @@ const Navbar = () => {
                   <Link href="/skills">Skills</Link>{" "}
                 </li>
                 <li>
-                  <Link href="/peoples">Peoples</Link>{" "}
+                  <Link href="/people">People</Link>{" "}
+                </li>
+                <li>
+                  <Link href={`/forum`}>Forum</Link>{" "}
                 </li>
                 <li>
                   <Link href={`/profile/${User["id"]}`}>Profile</Link>{" "}
