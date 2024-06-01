@@ -8,9 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Register = () => {
   const [UserDetails, setUserDetails] = useState({});
-
   const [OTP_send, setOTP_send] = useState(false);
-
   const router = useRouter();
 
   function updateRegister(event) {
@@ -23,11 +21,9 @@ const Register = () => {
   async function send_otp(event) {
     event.preventDefault();
     if (UserDetails["email"].endsWith("@sece.ac.in")) {
-      const resp = await fetch(
-        `/api/email_verification?email=${UserDetails["email"]}`,
-      );
+      const resp = await fetch(`/api/email_verification?email=${UserDetails["email"]}`);
       if (resp.ok) {
-        toast.success(`OTP SENDED TO ${UserDetails["email"]}`, {
+        toast.success(`OTP SENT TO ${UserDetails["email"]}`, {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -58,7 +54,6 @@ const Register = () => {
 
   async function handle_register(event) {
     event.preventDefault();
-    console.log("first");
     if (UserDetails["email"].endsWith("@sece.ac.in")) {
       if (UserDetails["password"].length > 7) {
         const resp = await fetch("/api/register", {
@@ -69,7 +64,7 @@ const Register = () => {
           body: JSON.stringify(UserDetails),
         });
         if (resp.ok) {
-          toast.success("Register successfully", {
+          toast.success("Registered successfully", {
             position: "top-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -117,53 +112,53 @@ const Register = () => {
         theme="light"
         transition={Bounce}
       />
-      <div className="flex justify-center pt-20">
-        <form onSubmit={handle_register} className="border-[1px] p-5 rounded">
-          <h1 className="text-3xl font-bold text-center py-2">REGISTER</h1>
-          <div className="py-2">
+      <div className="flex justify-center items-center min-h-screen bg-gray-100">
+        <form onSubmit={handle_register} className="bg-white border border-gray-200 p-8 rounded-lg shadow-md w-full max-w-md">
+          <h1 className="text-3xl font-bold text-center text-gray-700 mb-6">REGISTER</h1>
+          <div className="mb-4">
             <input
               type="text"
-              className="w-full rounded outline-none border-[1px] border-gray-500 p-2"
+              className="w-full p-3 border rounded-md outline-none focus:border-blue-500"
               name="name"
               onChange={updateRegister}
-              placeholder="test user"
+              placeholder="Name"
               required
             />
           </div>
-          <div className="py-2">
+          <div className="mb-4">
             <input
               type="password"
-              className="w-full rounded outline-none border-[1px] border-gray-500 p-2"
+              className="w-full p-3 border rounded-md outline-none focus:border-blue-500"
               name="password"
               onChange={updateRegister}
-              placeholder="test123"
+              placeholder="Password"
               required
             />
           </div>
-          <div className="py-2">
+          <div className="mb-4">
             <input
               type="text"
-              className="w-full rounded outline-none border-[1px] border-gray-500 p-2"
+              className="w-full p-3 border rounded-md outline-none focus:border-blue-500"
               name="phone"
               onChange={updateRegister}
-              placeholder="987654321"
+              placeholder="Phone"
               required
             />
           </div>
-          <div className="py-2">
+          <div className="mb-4">
             <input
               type="email"
-              className="w-full rounded outline-none border-[1px] border-gray-500 p-2"
+              className="w-full p-3 border rounded-md outline-none focus:border-blue-500"
               name="email"
               onChange={updateRegister}
-              placeholder="test.t2021eceb@sece.ac.in"
+              placeholder="Email (must be @sece.ac.in)"
               required
             />
           </div>
-          <div className="py-2 flex items-center gap-3">
+          <div className="mb-4 flex items-center gap-3">
             <p>Select pass out year</p>
             <select
-              className="p-2 outline-none border-[1px] border-[#ddd]"
+              className="p-3 border rounded-md outline-none focus:border-blue-500"
               name="year"
               onChange={updateRegister}
               required
@@ -178,29 +173,28 @@ const Register = () => {
               )}
             </select>
           </div>
-          <div className="py-3 flex justify-center">
-            {!OTP_send && (
-              <p
-                className="border-[1px] border-gray-600 p-2 rounded bg-green-300 hover:bg-green-500"
+          <div className="mb-4 flex justify-center">
+            {!OTP_send ? (
+              <button
+                className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
                 onClick={send_otp}
               >
-                SEND OTP
-              </p>
-            )}
-            {OTP_send && (
-              <div>
-                <div className="py-2">
+                Send OTP
+              </button>
+            ) : (
+              <div className="w-full">
+                <div className="mb-4">
                   <input
                     type="text"
-                    className="w-full rounded outline-none border-[1px] border-gray-500 p-2"
+                    className="w-full p-3 border rounded-md outline-none focus:border-blue-500"
                     name="otp"
                     onChange={updateRegister}
-                    placeholder="123456"
+                    placeholder="OTP"
                     required
                   />
                 </div>
                 <button
-                  className="border-[1px] border-gray-600 p-2 rounded bg-green-300 hover:bg-green-500"
+                  className="bg-blue-500 text-white w-full px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
                   type="submit"
                 >
                   Register
@@ -208,13 +202,12 @@ const Register = () => {
               </div>
             )}
           </div>
-          <p className="text-center text-sm">Already Have an account</p>
-          <div className="py-3 flex justify-center">
-            <Link
-              className="border-[1px] border-gray-600 p-2 rounded bg-green-300 hover:bg-green-500"
-              href="/login"
-            >
-              Login
+          <p className="text-center text-sm">Already have an account?</p>
+          <div className="flex justify-center mt-4">
+            <Link href="/login" legacyBehavior>
+              <a className="bg-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-opacity-50">
+                Login
+              </a>
             </Link>
           </div>
         </form>

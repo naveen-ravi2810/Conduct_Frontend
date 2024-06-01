@@ -50,54 +50,71 @@ const Navbar = () => {
   }
 
   return (
-    <div>
-      <div className="flex justify-between">
-        <div>
-          <h1 className="tracking-widest text-4xl border-b-violet-400 border-b-2 text-center">
+    <div className="bg-white shadow-md">
+      <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+        <div className="text-center">
+          <h1 className="tracking-widest text-4xl text-purple-600 font-bold">
             Contact
           </h1>
-          <p className="text-sm text-center pt-1 uppercase">
-            Get Help From Others
-          </p>
+          <p className="text-sm text-gray-600 uppercase">Get Help From Others</p>
         </div>
-        <div className="items-center flex px-3">
-          <ul className="flex items-center gap-3">
+        <div className="items-center flex">
+          <ul className="flex items-center gap-6">
             <li>
-              <Link href="/">Home</Link>{" "}
+              <Link href="/" className="text-gray-800 hover:text-purple-600 transition duration-300">
+                Home
+              </Link>
             </li>
             {IsLoggedIN === true && (
-              <div className="flex gap-3">
+              <div className="flex items-center gap-6">
                 <li>
-                  <Link href="/skills">Skills</Link>{" "}
+                  <Link href="/skills" className="text-gray-800 hover:text-purple-600 transition duration-300">
+                    Skills
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/people">People</Link>{" "}
+                  <Link href="/people" className="text-gray-800 hover:text-purple-600 transition duration-300">
+                    People
+                  </Link>
                 </li>
                 <li>
-                  <Link href={`/forum`}>Forum</Link>{" "}
+                  <Link href="/forum" className="text-gray-800 hover:text-purple-600 transition duration-300">
+                    Forum
+                  </Link>
                 </li>
                 <li>
-                  <Link href={`/profile/${User["id"]}`}>Profile</Link>{" "}
+                  <Link href={`/profile/${User?.id}`} className="text-gray-800 hover:text-purple-600 transition duration-300">
+                    Profile
+                  </Link>
                 </li>
                 <li>
-                  <button onClick={() => fn_logout()}>Logout</button>{" "}
+                  <button
+                    onClick={fn_logout}
+                    className="text-gray-800 hover:text-purple-600 transition duration-300"
+                  >
+                    Logout
+                  </button>
                 </li>
               </div>
             )}
             {IsLoggedIN === false && (
-              <div className="flex gap-3">
+              <div className="flex items-center gap-6">
                 <li>
-                  <Link href="/login">Login</Link>{" "}
+                  <Link href="/login" className="text-gray-800 hover:text-purple-600 transition duration-300">
+                    Login
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/signup">SignUp</Link>{" "}
+                  <Link href="/signup" className="text-gray-800 hover:text-purple-600 transition duration-300">
+                    SignUp
+                  </Link>
                 </li>
               </div>
             )}
           </ul>
         </div>
       </div>
-      <hr />
+      <hr className="border-t-2 border-gray-200" />
     </div>
   );
 };

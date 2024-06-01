@@ -32,18 +32,19 @@ const Page = () => {
       alert("Invalid Credentials");
     }
   }
+
   return (
     <div>
       <Navbar />
-      <div className="flex justify-center h-[90vh] items-center">
-        <div>
+      <div className="flex justify-center items-center h-screen bg-gray-100">
+        <div className="bg-white shadow-md rounded-lg p-8 max-w-sm w-full">
           <form onSubmit={handle_login}>
-            <div className="pb-3" id="login_topic">
-              <h1>LOGIN</h1>
+            <div className="pb-3 text-center">
+              <h1 className="text-2xl font-bold text-gray-700">LOGIN</h1>
             </div>
-            <div className="pb-3" id="email">
+            <div className="pb-3">
               <input
-                className="outline-none p-2 border-green-500 border-[1px]"
+                className="outline-none p-2 border border-green-500 rounded w-full"
                 onChange={updateLoginDetails}
                 type="email"
                 name="email"
@@ -52,9 +53,9 @@ const Page = () => {
                 required
               />
             </div>
-            <div className="pb-3" id="password">
+            <div className="pb-3">
               <input
-                className="outline-none p-2 border-green-500 border-[1px]"
+                className="outline-none p-2 border border-green-500 rounded w-full"
                 onChange={updateLoginDetails}
                 type="password"
                 name="password"
@@ -62,12 +63,26 @@ const Page = () => {
                 required
               />
             </div>
-            <div className="pb-3" id="login_btn">
-              <button type="submit">Login</button>
+            <div className="pb-3">
+              <button
+                type="submit"
+                className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-700"
+              >
+                Login
+              </button>
             </div>
-            <div className="pb-3" id="register_btn">
+            <div className="pb-3 text-center">
               <Link href="/signup">
-                <button>Register</button>
+                <button className="w-full bg-green-500 text-white py-2 rounded hover:bg-green-700">
+                  Register
+                </button>
+              </Link>
+            </div>
+            <div className="text-center">
+              <Link href="/forgot_password">
+                <button className="w-full bg-yellow-500 text-white py-2 rounded hover:bg-yellow-700">
+                  Forgot Password
+                </button>
               </Link>
             </div>
           </form>
